@@ -1,120 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Simple Quiz App</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
-    }
-    .quiz-container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      max-width: 600px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    .question {
-      margin-bottom: 15px;
-    }
-    .answers {
-      list-style: none;
-      padding: 0;
-    }
-    .answers li {
-      margin-bottom: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    .result {
-      font-size: 18px;
-      margin-top: 20px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyLearn - E-Learning Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="quiz-container">
-    <h2>Simple Quiz</h2>
-    <div id="quiz"></div>
-    <button onclick="submitQuiz()">Submit</button>
-    <div class="result" id="result"></div>
-  </div>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-blue-600 text-white p-4 shadow">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">MyLearn</h1>
+      <nav class="space-x-4">
+        <a href="#login" class="hover:underline">Login</a>
+        <a href="#signup" class="hover:underline">Signup</a>
+        <a href="#quiz" class="hover:underline">Quiz</a>
+        <a href="#chatbot" class="hover:underline">Chatbot</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-blue-100 py-16">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-4">Welcome to MyLearn</h2>
+      <p class="text-lg text-blue-700">Your interactive, personalized learning assistant.</p>
+    </div>
+  </section>
+
+  <main class="max-w-4xl mx-auto mt-10 space-y-16 px-4">
+
+    <!-- Login Section -->
+    <section id="login" class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-semibold mb-4">Login</h3>
+      <form class="space-y-4">
+        <input type="email" placeholder="Email" class="w-full p-2 border rounded" required>
+        <input type="password" placeholder="Password" class="w-full p-2 border rounded" required>
+        <button type="submit" class="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600">Login</button>
+      </form>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-semibold mb-4">Sign Up</h3>
+      <form class="space-y-4">
+        <input type="text" placeholder="Full Name" class="w-full p-2 border rounded" required>
+        <input type="email" placeholder="Email" class="w-full p-2 border rounded" required>
+        <input type="password" placeholder="Password" class="w-full p-2 border rounded" required>
+        <button type="submit" class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600">Sign Up</button>
+      </form>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-semibold mb-4">Quiz: HTML Basics</h3>
+      <form id="quizForm" class="space-y-4">
+        <div>
+          <p class="mb-2 font-medium">1. What does HTML stand for?</p>
+          <label class="block"><input type="radio" name="q1" value="a" class="mr-2"> Hyper Text Markup Language</label>
+          <label class="block"><input type="radio" name="q1" value="b" class="mr-2"> High Tech Markup Language</label>
+          <label class="block"><input type="radio" name="q1" value="c" class="mr-2"> Hyperlink and Text Markup Language</label>
+        </div>
+        <button type="submit" class="bg-purple-500 text-white w-full py-2 rounded hover:bg-purple-600">Submit Quiz</button>
+      </form>
+      <div id="quizResult" class="mt-4 font-bold text-green-600"></div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-semibold mb-4">Chatbot</h3>
+      <div class="border p-4 h-64 overflow-y-auto mb-4 rounded bg-gray-50" id="chatMessages">
+        <!-- Chat messages will appear here -->
+      </div>
+      <input type="text" id="chatInput" placeholder="Ask a question..." class="w-full p-2 border rounded">
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 bg-gray-200 text-center p-4">
+    © 2025 MyLearn. All rights reserved.
+  </footer>
 
   <script>
-    const quizData = [
-      {
-        question: "What does HTML stand for?",
-        a: "Hyper Trainer Marking Language",
-        b: "HyperText Markup Language",
-        c: "HyperText Markdown Language",
-        d: "None of the above",
-        correct: "b"
-      },
-      {
-        question: "What is the correct tag for a line break?",
-        a: "<br>",
-        b: "<break>",
-        c: "<lb>",
-        d: "<line>",
-        correct: "a"
-      },
-      {
-        question: "Which CSS property changes text color?",
-        a: "font-color",
-        b: "text-style",
-        c: "color",
-        d: "font",
-        correct: "c"
+    // Quiz logic
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const correctAnswers = { q1: 'a' };
+      const userAnswer = document.querySelector('input[name="q1"]:checked')?.value;
+      const result = userAnswer === correctAnswers.q1 ? 1 : 0;
+      document.getElementById('quizResult').textContent = `You scored ${result} out of 1`;
+    });
+
+    // Chatbot logic
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && chatInput.value.trim() !== '') {
+        const userMessage = document.createElement('div');
+        userMessage.textContent = '👤 ' + chatInput.value;
+        userMessage.classList = 'mb-2 text-right';
+        chatMessages.appendChild(userMessage);
+
+        const botResponse = document.createElement('div');
+        botResponse.textContent = '🤖 Interesting question! Let me think...';
+        botResponse.classList = 'mb-4 text-left text-gray-600';
+        chatMessages.appendChild(botResponse);
+
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
       }
-    ];
-
-    const quizContainer = document.getElementById("quiz");
-
-    function loadQuiz() {
-      quizContainer.innerHTML = "";
-      quizData.forEach((q, index) => {
-        quizContainer.innerHTML += `
-          <div class="question">
-            <strong>${index + 1}. ${q.question}</strong>
-            <ul class="answers">
-              <li><input type="radio" name="q${index}" value="a"> ${q.a}</li>
-              <li><input type="radio" name="q${index}" value="b"> ${q.b}</li>
-              <li><input type="radio" name="q${index}" value="c"> ${q.c}</li>
-              <li><input type="radio" name="q${index}" value="d"> ${q.d}</li>
-            </ul>
-          </div>
-        `;
-      });
-    }
-
-    function submitQuiz() {
-      let score = 0;
-      quizData.forEach((q, index) => {
-        const selected = document.querySelector(`input[name="q${index}"]:checked`);
-        if (selected && selected.value === q.correct) {
-          score++;
-        }
-      });
-      const result = document.getElementById("result");
-      result.innerHTML = `You scored ${score} out of ${quizData.length}`;
-    }
-
-    loadQuiz();
+    });
   </script>
+
 </body>
 </html>
