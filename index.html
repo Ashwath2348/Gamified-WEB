@@ -1,0 +1,82 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { BadgeCheck, Star } from "lucide-react";
+import { motion } from "framer-motion";
+
+const questions = [
+  {
+    question: "What is the capital of France?",
+    options: ["Berlin", "Madrid", "Paris", "Rome"],
+    answer: "Paris",
+  },
+  {
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    answer: "Mars",
+  },
+  {
+    question: "Who wrote 'Hamlet'?",
+    options: ["Charles Dickens", "William Shakespeare", "J.K. Rowling", "Homer"],
+    answer: "William Shakespeare",
+  },
+];
+
+export default function GamifiedLearningPage() {
+  const [current, setCurrent] = useState(0);
+  const [score, setScore] = useState(0);
+  const [completed, setCompleted] = useState(false);
+
+  const handleAnswer = (option) => {
+    if (option === questions[current].answer) {
+      setScore(score + 1);
+    }
+    if (current + 1 < questions.length) {
+      setCurrent(current + 1);
+    } else {
+      setCompleted(true);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-indigo-700 p-8 text-white flex flex-col items-center justify-center gap-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-xl"
+      >
+        <Card className="rounded-2xl shadow-lg bg-white text-gray-900">
+          <CardContent className="p-6">
+            {!completed ? (
+              <>
+                <h2 className="text-2xl font-bold mb-4">Level {current + 1}</h2>
+                <p className="text-lg mb-4">{questions[current].question}</p>
+                <div className="grid grid-cols-2 gap-3">
+                  {questions[current].options.map((option) => (
+                    <Button
+                      key={option}
+                      onClick={() => handleAnswer(option)}
+                      className="text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl"
+                    >
+                      {option}
+                    </Button>
+                  ))}
+                </div>
+                <Progress value={((current + 1) / questions.length) * 100} className="mt-6" />
+              </>
+            ) : (
+              <div className="text-center">
+                <Star className="mx-auto text-yellow-400 w-12 h-12 mb-4" />
+                <h2 className="text-3xl font-bold mb-2">Quiz Completed!</h2>
+                <p className="text-xl">Your Score: {score} / {questions.length}</p>
+                <BadgeCheck className="mx-auto text-green-500 w-8 h-8 mt-4" />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
+  );
+}
