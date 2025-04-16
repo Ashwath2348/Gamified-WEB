@@ -1,3 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    .quiz-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .answers {
+      list-style: none;
+      padding: 0;
+    }
+    .answers li {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Simple Quiz</h2>
+    <div id="quiz"></div>
+    <button onclick="submitQuiz()">Submit</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What does HTML stand for?",
+        a: "Hyper Trainer Marking Language",
+        b: "HyperText Markup Language",
+        c: "HyperText Markdown Language",
+        d: "None of the above",
+        correct: "b"
+      },
+      {
+        question: "What is the correct tag for a line break?",
+        a: "<br>",
+        b: "<break>",
+        c: "<lb>",
+        d: "<line>",
+        correct: "a"
+      },
+      {
+        question: "Which CSS property changes text color?",
+        a: "font-color",
+        b: "text-style",
+        c: "color",
+        d: "font",
+        correct: "c"
+      }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+
+    function loadQuiz() {
+      quizContainer.innerHTML = "";
+      quizData.forEach((q, index) => {
+        quizContainer.innerHTML += `
+          <div class="question">
+            <strong>${index + 1}. ${q.question}</strong>
+            <ul class="answers">
+              <li><input type="radio" name="q${index}" value="a"> ${q.a}</li>
+              <li><input type="radio" name="q${index}" value="b"> ${q.b}</li>
+              <li><input type="radio" name="q${index}" value="c"> ${q.c}</li>
+              <li><input type="radio" name="q${index}" value="d"> ${q.d}</li>
+            </ul>
+          </div>
+        `;
+      });
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      quizData.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && selected.value === q.correct) {
+          score++;
+        }
+      });
+      const result = document.getElementById("result");
+      result.innerHTML = `You scored ${score} out of ${quizData.length}`;
+    }
+
+    loadQuiz();
+  </script>
+</body>
+</html>
+
 git clone https://github.com/your-username/simple-quiz-app.git
 git add .
 git commit -m "Initial commit - quiz app"
