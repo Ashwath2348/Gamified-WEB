@@ -1,59 +1,85 @@
-<script>
-// ===========================
-// Quiz Functionality
-// ===========================
-document.getElementById('quizForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+// DOM Elements
+const loginForm = document.querySelector('#loginForm');
+const loginEmail = document.querySelector('#loginEmail');
+const loginPassword = document.querySelector('#loginPassword');
+const loginMessage = document.querySelector('#loginMessage');
 
-  // Define correct answers
-  const correctAnswers = { q1: 'a' };
-  const userAnswer = document.querySelector('input[name="q1"]:checked');
-  let score = 0;
+const quizForm = document.querySelector('#quizForm');
+const quizResult = document.querySelector('#quizResult');
+const quizAnswers = document.querySelectorAll('input[name="quiz"]');
+const submitQuizBtn = document.querySelector('#submitQuiz');
 
-  if (userAnswer && userAnswer.value === correctAnswers.q1) {
-    score++;
-  }
+const chatBox = document.querySelector('#chatBox');
+const chatToggle = document.querySelector('#chatToggle');
+const chatMessages = document.querySelector('#chatMessages');
+const chatInput = document.querySelector('#chatInput');
 
-  document.getElementById('quizResult').textContent = `You scored ${score} out of 1.`;
+// Login form validation
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const email = loginEmail.value;
+    const password = loginPassword.value;
+
+    // Simple validation
+    if (email === '' || password === '') {
+        loginMessage.textContent = 'Both fields are required!';
+        loginMessage.style.color = 'red';
+    } else {
+        loginMessage.textContent = 'Login successful!';
+        loginMessage.style.color = 'green';
+
+        // Simulate redirect (In a real app, you would use window.location.href)
+        setTimeout(() => {
+            window.location.href = '/dashboard.html'; // Example redirect
+        }, 2000);
+    }
 });
 
-// ===========================
-// Chatbot Functionality
-// ===========================
-const chatInput = document.getElementById('chatInput');
-const chatMessages = document.getElementById('chatMessages');
+// Quiz form submission
+submitQuizBtn.addEventListener('click', function(event) {
+    event.preventDefault();
 
-chatInput.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-    const userMessage = document.createElement('div');
-    userMessage.textContent = '👤 ' + chatInput.value;
-    userMessage.classList = 'text-right mb-2';
-    chatMessages.appendChild(userMessage);
+    let score = 0;
 
-    // Scroll to latest message
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    quizAnswers.forEach(answer => {
+        if (answer.checked && answer.value === 'correct') {
+            score += 1;
+        }
+    });
 
-    // Fake bot response
-    const botMessage = document.createElement('div');
-    botMessage.textContent = '🤖 Thanks! Let me process that...';
-    botMessage.classList = 'text-left text-gray-600 mb-4';
-    chatMessages.appendChild(botMessage);
-
-    // Clear input
-    chatInput.value = '';
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
+    quizResult.textContent = `You scored: ${score} / ${quizAnswers.length}`;
+    quizResult.style.color = score === quizAnswers.length ? 'green' : 'orange';
 });
 
-// ===========================
-// Optional: Floating Chat Toggle
-// ===========================
-const chatToggleBtn = document.getElementById('chatToggle');
-const chatBox = document.getElementById('chatBox');
+// Chatbot toggle functionality
+chatToggle.addEventListener('click', function() {
+    chatBox.style.display = (chatBox.style.display === 'block' ? 'none' : 'block');
+});
 
-if (chatToggleBtn && chatBox) {
-  chatToggleBtn.addEventListener('click', () => {
-    chatBox.style.display = chatBox.style.display === 'none' || chatBox.style.display === '' ? 'block' : 'none';
-  });
-}
-</script>
+// Simulate chat messages
+chatInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && chatInput.value !== '') {
+        const userMessage = chatInput.value;
+        chatMessages.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+        chatInput.value = '';
+
+        // Simulate a chatbot reply
+        setTimeout(() => {
+            const botReply = "I'm here to help! What can I assist you with today?";
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+        }, 1000);
+    }
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
