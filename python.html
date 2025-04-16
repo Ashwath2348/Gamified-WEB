@@ -1,1 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      padding: 20px;
+    }
+
+    .quiz-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .answers label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-box">
+    <h2>Python Quiz - Level 1</h2>
+
+    <!-- 1 -->
+    <div class="question">
+      <p>1. What is the correct file extension for Python files?</p>
+      <div class="answers">
+        <label><input type="radio" name="q1" value="a"> .py</label>
+        <label><input type="radio" name="q1" value="b"> .python</label>
+        <label><input type="radio" name="q1" value="c"> .pt</label>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="question">
+      <p>2. How do you insert COMMENTS in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q2" value="a"> // This is a comment</label>
+        <label><input type="radio" name="q2" value="b"> # This is a comment</label>
+        <label><input type="radio" name="q2" value="c"> /* This is a comment */</label>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="question">
+      <p>3. How do you create a variable with the numeric value 5?</p>
+      <div class="answers">
+        <label><input type="radio" name="q3" value="a"> x = int(5)</label>
+        <label><input type="radio" name="q3" value="b"> x = 5</label>
+        <label><input type="radio" name="q3" value="c"> Both of the above</label>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="question">
+      <p>4. Which keyword is used to define a function in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q4" value="a"> define</label>
+        <label><input type="radio" name="q4" value="b"> def</label>
+        <label><input type="radio" name="q4" value="c"> function</label>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="question">
+      <p>5. Which data type is used to store multiple values in one variable?</p>
+      <div class="answers">
+        <label><input type="radio" name="q5" value="a"> int</label>
+        <label><input type="radio" name="q5" value="b"> bool</label>
+        <label><input type="radio" name="q5" value="c"> list</label>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="question">
+      <p>6. What is the correct way to create a function in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q6" value="a"> create myFunc():</label>
+        <label><input type="radio" name="q6" value="b"> function myFunc():</label>
+        <label><input type="radio" name="q6" value="c"> def myFunc():</label>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="question">
+      <p>7. How do you start a while loop in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q7" value="a"> while x > 0:</label>
+        <label><input type="radio" name="q7" value="b"> while (x > 0)</label>
+        <label><input type="radio" name="q7" value="c"> loop x > 0:</label>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="question">
+      <p>8. What symbol is used for exponentiation in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q8" value="a"> ^</label>
+        <label><input type="radio" name="q8" value="b"> **</label>
+        <label><input type="radio" name="q8" value="c"> ^^</label>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="question">
+      <p>9. What is the output of: <code>print(type("Hello"))</code>?</p>
+      <div class="answers">
+        <label><input type="radio" name="q9" value="a"> &lt;class 'int'&gt;</label>
+        <label><input type="radio" name="q9" value="b"> &lt;class 'str'&gt;</label>
+        <label><input type="radio" name="q9" value="c"> &lt;string&gt;</label>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="question">
+      <p>10. How do you create a dictionary in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q10" value="a"> { "key": "value" }</label>
+        <label><input type="radio" name="q10" value="b"> [ "key": "value" ]</label>
+        <label><input type="radio" name="q10" value="c"> ( "key": "value" )</label>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="question">
+      <p>11. Which keyword is used for loops in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q11" value="a"> repeat</label>
+        <label><input type="radio" name="q11" value="b"> for</label>
+        <label><input type="radio" name="q11" value="c"> iterate</label>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="question">
+      <p>12. How do you check equality between two variables in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q12" value="a"> =</label>
+        <label><input type="radio" name="q12" value="b"> ==</label>
+        <label><input type="radio" name="q12" value="c"> !=</label>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="question">
+      <p>13. What is the output of: <code>len([1, 2, 3])</code>?</p>
+      <div class="answers">
+        <label><input type="radio" name="q13" value="a"> 2</label>
+        <label><input type="radio" name="q13" value="b"> 3</label>
+        <label><input type="radio" name="q13" value="c"> Error</label>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="question">
+      <p>14. Which of the following is a Python boolean value?</p>
+      <div class="answers">
+        <label><input type="radio" name="q14" value="a"> True</label>
+        <label><input type="radio" name="q14" value="b"> Yes</label>
+        <label><input type="radio" name="q14" value="c"> 1</label>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="question">
+      <p>15. How do you start an if statement in Python?</p>
+      <div class="answers">
+        <label><input type="radio" name="q15" value="a"> if x &gt; y:</label>
+        <label><input type="radio" name="q15" value="b"> if (x &gt; y)</label>
+        <label><input type="radio" name="q15" value="c"> if x &gt; y then:</label>
+      </div>
+    </div>
+
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: 'a', q2: 'b', q3: 'c', q4: 'b', q5: 'c',
+        q6: 'c', q7: 'a', q8: 'b', q9: 'b', q10: 'a',
+        q11: 'b', q12: 'b', q13: 'b', q14: 'a', q15: 'a'
+      };
+
+      let score = 0;
+      let total = Object.keys(answers).length;
+
+      for (let key in answers) {
+        let selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      document.getElementById("result").innerText = 
+        `You scored ${score} out of ${total}!`;
+    }
+  </script>
+
+</body>
+</html>
 
