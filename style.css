@@ -1,15 +1,21 @@
 /* Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f3f4f6;
   color: #333;
-  margin: 0;
-  padding: 0;
+  line-height: 1.6;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  transition: 0.3s;
 }
 
 /* Header */
@@ -20,6 +26,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 header h1 {
@@ -30,7 +37,6 @@ header h1 {
 header nav a {
   margin-left: 1.5rem;
   font-weight: 500;
-  transition: opacity 0.2s ease-in-out;
 }
 
 header nav a:hover {
@@ -64,7 +70,7 @@ header nav a:hover {
   padding: 1rem;
 }
 
-/* Section Styles */
+/* Section */
 section {
   background: white;
   padding: 2rem;
@@ -73,7 +79,7 @@ section {
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* Form Inputs */
+/* Forms */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -92,7 +98,6 @@ textarea {
   font-size: 1rem;
 }
 
-/* Buttons */
 button,
 input[type="submit"] {
   background-color: #3b82f6;
@@ -102,7 +107,7 @@ input[type="submit"] {
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 button:hover,
@@ -110,7 +115,49 @@ input[type="submit"]:hover {
   background-color: #2563eb;
 }
 
-/* Quiz Styling */
+/* Login Card Specific Styling */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  background-color: #f9fafb;
+}
+
+.alt-login {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.alt-login:hover {
+  background-color: #f3f4f6;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #999;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+  margin: 0 10px;
+}
+
+/* Quiz */
 form label {
   display: block;
   margin-bottom: 0.6rem;
@@ -146,6 +193,14 @@ form label {
   font-size: 0.9rem;
 }
 
+#chatInput {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Chat Toggle Button */
 #chatToggle {
   position: fixed;
   bottom: 1rem;
@@ -167,4 +222,38 @@ footer {
   padding: 1.5rem;
   background-color: #e5e7eb;
   font-size: 0.95rem;
+  margin-top: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav {
+    margin-top: 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 1rem 0.5rem;
+  }
+
+  section {
+    padding: 1.5rem;
+  }
+
+  #chatBox {
+    width: 90%;
+    right: 5%;
+  }
 }
