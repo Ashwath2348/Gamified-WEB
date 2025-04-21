@@ -30,15 +30,16 @@
       </form>
     </section>
 
-    <!-- Hidden Sections (Will be shown after signup) -->
+    <!-- Hidden Sections -->
     <div id="hiddenSections" class="space-y-16 mt-10 hidden">
 
       <!-- Login Section -->
       <section id="login" class="bg-white p-6 rounded shadow-md">
         <h3 class="text-2xl font-semibold mb-4">Login</h3>
-        <form class="space-y-4">
-          <input type="email" placeholder="Email" class="w-full p-2 border rounded" required>
-          <input type="password" placeholder="Password" class="w-full p-2 border rounded" required>
+        <form id="loginForm" class="space-y-4">
+          <input type="email" id="loginEmail" placeholder="Email" class="w-full p-2 border rounded" required>
+          <input type="password" id="loginPassword" placeholder="Password" class="w-full p-2 border rounded" required>
+          <p id="loginMessage" class="text-sm"></p>
           <button type="submit" class="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600">Login</button>
         </form>
       </section>
@@ -49,11 +50,11 @@
         <form id="quizForm" class="space-y-4">
           <div>
             <p class="mb-2 font-medium">1. What does HTML stand for?</p>
-            <label class="block"><input type="radio" name="q1" value="a" class="mr-2"> Hyper Text Markup Language</label>
-            <label class="block"><input type="radio" name="q1" value="b" class="mr-2"> High Tech Markup Language</label>
-            <label class="block"><input type="radio" name="q1" value="c" class="mr-2"> Hyperlink and Text Markup Language</label>
+            <label class="block"><input type="radio" name="quiz" value="correct" class="mr-2"> Hyper Text Markup Language</label>
+            <label class="block"><input type="radio" name="quiz" value="wrong" class="mr-2"> High Tech Markup Language</label>
+            <label class="block"><input type="radio" name="quiz" value="wrong" class="mr-2"> Hyperlink and Text Markup Language</label>
           </div>
-          <button type="submit" class="bg-purple-500 text-white w-full py-2 rounded hover:bg-purple-600">Submit Quiz</button>
+          <button id="submitQuiz" class="bg-purple-500 text-white w-full py-2 rounded hover:bg-purple-600">Submit Quiz</button>
         </form>
         <div id="quizResult" class="mt-4 font-bold text-green-600"></div>
       </section>
@@ -61,8 +62,11 @@
       <!-- Chatbot Section -->
       <section id="chatbot" class="bg-white p-6 rounded shadow-md">
         <h3 class="text-2xl font-semibold mb-4">Chatbot</h3>
-        <div class="border p-4 h-64 overflow-y-auto mb-4 rounded bg-gray-50" id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Ask a question..." class="w-full p-2 border rounded">
+        <button id="chatToggle" class="mb-2 text-blue-600 underline">Toggle Chat</button>
+        <div id="chatBox" class="border p-4 h-64 overflow-y-auto mb-4 rounded bg-gray-50 hidden">
+          <div id="chatMessages"></div>
+          <input type="text" id="chatInput" placeholder="Ask a question..." class="w-full p-2 border rounded mt-2">
+        </div>
       </section>
 
     </div>
@@ -73,45 +77,7 @@
     © 2025 MyLearn. All rights reserved.
   </footer>
 
-  <script>
-    // Signup logic to reveal hidden content
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert("Signup successful!");
-      document.getElementById('hiddenSections').classList.remove('hidden');
-      window.location.href = "#login"; // Scroll to login after signup
-    });
-
-    // Quiz logic
-    document.getElementById('quizForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const correctAnswers = { q1: 'a' };
-      const userAnswer = document.querySelector('input[name="q1"]:checked')?.value;
-      const result = userAnswer === correctAnswers.q1 ? 1 : 0;
-      document.getElementById('quizResult').textContent = `You scored ${result} out of 1`;
-    });
-
-    // Chatbot logic
-    const chatInput = document.getElementById('chatInput');
-    const chatMessages = document.getElementById('chatMessages');
-
-    chatInput?.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-        const userMessage = document.createElement('div');
-        userMessage.textContent = '👤 ' + chatInput.value;
-        userMessage.classList = 'mb-2 text-right';
-        chatMessages.appendChild(userMessage);
-
-        const botResponse = document.createElement('div');
-        botResponse.textContent = '🤖 Interesting question! Let me think...';
-        botResponse.classList = 'mb-4 text-left text-gray-600';
-        chatMessages.appendChild(botResponse);
-
-        chatInput.value = '';
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-    });
-  </script>
-
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
