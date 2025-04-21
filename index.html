@@ -12,64 +12,48 @@
   <header class="bg-blue-600 text-white p-4 shadow">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">MyLearn</h1>
-      <nav class="space-x-4">
-        <a href="#signup" class="hover:underline">Signup</a>
-      </nav>
     </div>
   </header>
 
-  <!-- Signup Section -->
-  <main class="max-w-4xl mx-auto mt-10 px-4">
-    <section id="signup" class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-2xl font-semibold mb-4">Sign Up</h3>
-      <form id="signupForm" class="space-y-4">
-        <input type="text" placeholder="Full Name" class="w-full p-2 border rounded" required>
-        <input type="email" placeholder="Email" class="w-full p-2 border rounded" required>
-        <input type="password" placeholder="Password" class="w-full p-2 border rounded" required>
-        <button type="submit" class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600">Sign Up</button>
+  <!-- Main Sections -->
+  <main class="max-w-4xl mx-auto mt-10 px-4 space-y-16">
+
+    <!-- Login Section -->
+    <section id="login" class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-semibold mb-4">Login</h3>
+      <form id="loginForm" class="space-y-4">
+        <input type="email" id="loginEmail" placeholder="Email" class="w-full p-2 border rounded" required>
+        <input type="password" id="loginPassword" placeholder="Password" class="w-full p-2 border rounded" required>
+        <p id="loginMessage" class="text-sm"></p>
+        <button type="submit" class="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600">Login</button>
       </form>
     </section>
 
-    <!-- Hidden Sections -->
-    <div id="hiddenSections" class="space-y-16 mt-10 hidden">
-
-      <!-- Login Section -->
-      <section id="login" class="bg-white p-6 rounded shadow-md">
-        <h3 class="text-2xl font-semibold mb-4">Login</h3>
-        <form id="loginForm" class="space-y-4">
-          <input type="email" id="loginEmail" placeholder="Email" class="w-full p-2 border rounded" required>
-          <input type="password" id="loginPassword" placeholder="Password" class="w-full p-2 border rounded" required>
-          <p id="loginMessage" class="text-sm"></p>
-          <button type="submit" class="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600">Login</button>
-        </form>
-      </section>
-
-      <!-- Quiz Section -->
-      <section id="quiz" class="bg-white p-6 rounded shadow-md">
-        <h3 class="text-2xl font-semibold mb-4">Quiz: HTML Basics</h3>
-        <form id="quizForm" class="space-y-4">
-          <div>
-            <p class="mb-2 font-medium">1. What does HTML stand for?</p>
-            <label class="block"><input type="radio" name="quiz" value="correct" class="mr-2"> Hyper Text Markup Language</label>
-            <label class="block"><input type="radio" name="quiz" value="wrong" class="mr-2"> High Tech Markup Language</label>
-            <label class="block"><input type="radio" name="quiz" value="wrong" class="mr-2"> Hyperlink and Text Markup Language</label>
-          </div>
-          <button id="submitQuiz" class="bg-purple-500 text-white w-full py-2 rounded hover:bg-purple-600">Submit Quiz</button>
-        </form>
-        <div id="quizResult" class="mt-4 font-bold text-green-600"></div>
-      </section>
-
-      <!-- Chatbot Section -->
-      <section id="chatbot" class="bg-white p-6 rounded shadow-md">
-        <h3 class="text-2xl font-semibold mb-4">Chatbot</h3>
-        <button id="chatToggle" class="mb-2 text-blue-600 underline">Toggle Chat</button>
-        <div id="chatBox" class="border p-4 h-64 overflow-y-auto mb-4 rounded bg-gray-50 hidden">
-          <div id="chatMessages"></div>
-          <input type="text" id="chatInput" placeholder="Ask a question..." class="w-full p-2 border rounded mt-2">
+    <!-- Quiz Section -->
+    <section id="quiz" class="bg-white p-6 rounded shadow-md hidden">
+      <h3 class="text-2xl font-semibold mb-4">Quiz: HTML Basics</h3>
+      <form id="quizForm" class="space-y-4">
+        <div>
+          <p class="mb-2 font-medium">1. What does HTML stand for?</p>
+          <label class="block"><input type="radio" name="quiz" value="correct" class="mr-2"> Hyper Text Markup Language</label>
+          <label class="block"><input type="radio" name="quiz" value="wrong" class="mr-2"> High Tech Markup Language</label>
+          <label class="block"><input type="radio" name="quiz" value="wrong" class="mr-2"> Hyperlink and Text Markup Language</label>
         </div>
-      </section>
+        <button id="submitQuiz" class="bg-purple-500 text-white w-full py-2 rounded hover:bg-purple-600">Submit Quiz</button>
+      </form>
+      <div id="quizResult" class="mt-4 font-bold text-green-600"></div>
+    </section>
 
-    </div>
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="bg-white p-6 rounded shadow-md hidden">
+      <h3 class="text-2xl font-semibold mb-4">Chatbot</h3>
+      <button id="chatToggle" class="mb-2 text-blue-600 underline">Toggle Chat</button>
+      <div id="chatBox" class="border p-4 h-64 overflow-y-auto mb-4 rounded bg-gray-50 hidden">
+        <div id="chatMessages"></div>
+        <input type="text" id="chatInput" placeholder="Ask a question..." class="w-full p-2 border rounded mt-2">
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
